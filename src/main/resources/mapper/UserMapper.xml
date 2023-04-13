@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitniki.vpnconreactiveserver.mapper.UserMapper">
+
+    <resultMap id="UserEntityMap" type="com.bitniki.vpnconreactiveserver.entity.UserEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="login" jdbcType="VARCHAR" property="login" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="UserEntityMap">
+        SELECT
+            *
+        FROM users
+    </select>
+
+    <select id="selectById" resultMap="UserEntityMap">
+        SELECT
+        *
+        FROM users
+        <where>
+            <if test="id != null"> users.id = #{id} </if>
+        </where>
+    </select>
+
+</mapper>
